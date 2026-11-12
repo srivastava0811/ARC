@@ -1,0 +1,10 @@
+{
+    "python.terminal.useEnvFile": true,
+    "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv",
+    "python.envFile": "${workspaceFolder}/backend/.env",
+    "python.analysis.extraPaths": ["./backend"],
+    "eslint.workingDirectories": [
+        { "directory": "./frontend", "changeProcessCWD": true }
+    ],
+    "ruff.configuration": "${workspaceFolder}/backend/pyproject.toml"
+}
