@@ -1,7 +1,7 @@
 ﻿# Submission checklist
 
 - [x] Set the README clone URL to `https://github.com/srivastava0811/ARC.git`.
-- [ ] Push the reviewed source and make the repository public before submission.
+- [x] Push the reviewed source and make the repository public before submission.
 - [ ] Review files selected for publication: no `.env`, buyer passwords, logs,
   virtual environments, dependencies, or build output. Include `.env.example` files.
 - [ ] Scan the final repository and **all Git history** for secrets before making
@@ -23,7 +23,7 @@ Show the request, four stages, evidence, explicit approval, Sandbox checkout,
 payment processing, and saved receipt. State whether the catalog is synthetic or
 live and whether Gemini is enabled. Leave servers running during the demonstration.
 
-Current blockers: repository publication is unverified; history scanning and final-clone
-reproduction remain pending. Docker is unavailable on the audit machine, so its
+Remaining checks: review any subsequent commits for secrets and verify final-clone
+reproduction. Docker is unavailable on the audit machine, so its
 runtime check remains pending. Complete integration judging requires valid
 credentials and sufficient quota. See [validation notes](VALIDATION.md).

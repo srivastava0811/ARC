@@ -28,9 +28,9 @@
 - macOS/Linux commands were reviewed, not executed on those operating systems.
 - Automated payment tests mock PayPal. Recheck actual buyer approval and completed
   capture with the final judging configuration.
-- Git was initialized after the source audit; no commits exist yet. Scan the
-  final staged files and resulting history before publication. A source scan
-  cannot establish that future commits are free of secrets.
+- The initial commit was scanned for the configured local provider credentials
+  and checked credential patterns before publication. This targeted check does
+  not establish that arbitrary secrets or future commits are clean.
 - Four stages exist; normal planning is deterministic and Gemini enrichment is
   optional and asynchronous.
 
