@@ -4,8 +4,6 @@
 
 Built for the PayPal AI Hackathon · [MIT licensed](LICENSE) · Runs locally
 
-**Demo video:** TODO — add the final YouTube or Devpost demonstration URL before submission.
-
 [Getting started](#getting-started) · [Demo walkthrough](#demo-walkthrough) · [Documentation](#architecture-and-documentation)
 
 ## Overview
@@ -137,7 +135,7 @@ test -f .env.local || cp .env.example .env.local
 npm run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
-Open **[http://localhost:3000](http://localhost:3000)**. Use `localhost` consistently in the browser to match CORS and PayPal return URLs. Explicit Python paths and `npm.cmd` avoid PowerShell activation/script-policy issues.
+Open **[http://localhost:3000](http://localhost:3000)** for the landing page and choose **Launch ARC**, or go directly to the [workspace](http://localhost:3000/workspace). Use `localhost` consistently to match CORS and PayPal return URLs.
 
 <a id="environment-reference"></a>
 
@@ -160,7 +158,7 @@ The templates are [backend/.env.example](backend/.env.example) and [frontend/.en
 | AI and live product discovery | `AGENT_MODE=gemini`, `CATALOG_PROVIDER=channel3` | Gemini and Channel3 keys |
 | Sandbox checkout in any mode | PayPal settings below | Sandbox REST app and a Sandbox buyer |
 
-**Gemini:** Obtain a key from [Google AI Studio](https://aistudio.google.com/apikey) and set `GEMINI_API_KEY` in the backend. Confirm access/quota for the model IDs in the example file; change them if necessary. The planner-model setting is used by the diagnostic helper, not normal workflow parsing.
+**Gemini:** Obtain a key from [Google AI Studio](https://aistudio.google.com/apikey) and set `GEMINI_API_KEY` in the backend. Confirm access/quota for the model IDs in the example file; change them if necessary.
 
 **Channel3:** Obtain access through [Channel3 for developers](https://trychannel3.com/developers) and set `CHANNEL3_API_KEY`. Live prices, evidence, and availability may produce different results from the demo.
 
@@ -181,7 +179,7 @@ Provider keys and PayPal credentials belong **only in the backend**. Every `NEXT
 
 Use `fixture` + `demo_catalog` for predictable products; configure PayPal Sandbox to include checkout. Enable Gemini for AI enrichment, or Channel3 for live research.
 
-1. Open [ARC](http://localhost:3000) and submit **`Find three 27-inch monitors for our office under $600 total.`**
+1. Open the [ARC workspace](http://localhost:3000/workspace) and submit **`Find three 27-inch monitors for our office under $600 total.`**
 2. Watch the four stages complete, then inspect the product evidence and tradeoffs. In the synthetic catalog, **StudioView 27 4K** costs **$189 per unit / $567 for three**. Larger totals fail the budget check; a 24-inch model fails the size requirement.
 3. Select the eligible option and choose **Review & approve**. Review the quantity and total, then continue to PayPal Sandbox.
 4. Sign in as the Sandbox **Personal buyer** and approve. Keep both servers running while returning to ARC's payment-processing screen.
@@ -199,12 +197,6 @@ Without provider keys, the default mode demonstrates procurement but not live AI
 | [Backend guide](backend/README.md) / [Frontend guide](frontend/README.md) | Directory-specific commands |
 | [Workflow orchestration](backend/app/services/workflow.py) | Stage execution, persistence, and optional enrichment |
 | [PayPal integration](backend/app/services/paypal.py) | Server-side OAuth, order creation, and capture |
-| [Validation record](docs/VALIDATION.md) | Previous checks and their limits |
-| [Submission checklist](docs/SUBMISSION_CHECKLIST.md) | Final judging and submission checks |
-
-Stored agent execution records can be inspected with the backend diagnostic described in the setup reference. To check the code locally, run backend `python -m pytest` and `python -m ruff check .` using the venv executable; in `frontend/`, run `npm run lint`, `npm run typecheck`, and `npm run build`. Stop the development frontend before building in the same folder; both use `.next-arc`. After building, use `npm run start` for production startup. Use `npm.cmd` in PowerShell.
-
-**Verification scope:** Existing tests, lint/type checks, an isolated frontend build, and fresh native PostgreSQL migrations were verified during the earlier audit. Docker execution, dependency installation from a fresh public clone, and macOS/Linux execution remain unverified. Mocked payment tests do not replace a final interactive Sandbox checkout.
 
 ## Limitations
 
@@ -212,7 +204,7 @@ Stored agent execution records can be inspected with the backend diagnostic desc
 - **Focused product support.** One category per request: monitors, keyboards, or mice; USD budgets. Catalog evidence may be incomplete, and low monitor price filtering is a heuristic.
 - **Local shared workspace.** There is no authentication or tenant isolation. Keep the API on `127.0.0.1`; CORS is not access control. Anyone with API access can trigger configured provider usage and checkout actions.
 - **Process-bound execution.** PostgreSQL preserves records, but active workflows/enrichment can be interrupted by an API restart. There is no durable task queue or webhook-based payment reconciliation. Keep servers running through receipt confirmation and inspect uncertain payment state before retrying.
-- **External access required for integrations.** Models, quotas, and catalog availability vary. Judges need their own credentials or dedicated test access supplied through an organizer-approved private channel; never publish keys or buyer passwords.
+- **External access required for integrations.** Models, quotas, and catalog availability vary. Use your own provider credentials and keep keys and buyer passwords private.
 
 ## License
 

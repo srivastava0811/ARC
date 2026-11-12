@@ -41,7 +41,7 @@ export default function HistoryPage() {
 
   return (
     <main className="history-page">
-      <Link className="back-link" href="/">
+      <Link className="back-link" href="/workspace">
         <ArrowLeft size={16} aria-hidden="true" />
         Back to workspace
       </Link>
@@ -70,7 +70,7 @@ export default function HistoryPage() {
             </div>
           ))}
         </div>
-        <Link className="primary-button history-button" href="/">Return to workspace</Link>
+        <Link className="primary-button history-button" href="/workspace">Return to workspace</Link>
       </div>
       {(receipt || receiptError) && <div className="modal-backdrop" onMouseDown={(event) => {
         if (event.target === event.currentTarget) { setReceipt(null); setReceiptError(null); }
