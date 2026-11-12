@@ -4,6 +4,8 @@
 
 Built for the PayPal AI Hackathon · [MIT licensed](LICENSE) · Runs locally
 
+**[Watch the ARC demo on YouTube](https://www.youtube.com/watch?v=hbJqU6j_AZg)**
+
 [Getting started](#getting-started) · [Demo walkthrough](#demo-walkthrough) · [Documentation](#architecture-and-documentation)
 
 ## Overview
